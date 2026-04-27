@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Azure Functions local settings (contains secrets)
+local.settings.json
+
+# Coverage
+coverage_report/
+.coverage
+htmlcov/
+
+# VS Code
+.vscode/settings.json
+
+# Environment variables
+.env
+*.env
+
+# macOS
+.DS_Store
+
+# pytest
+.pytest_cache/

@@ -1,0 +1,103 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="'Courier New', monospace">
+  <defs>
+    <linearGradient id="bgArch" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0d1528"/>
+    </linearGradient>
+    <linearGradient id="accentArch" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="420" fill="url(#bgArch)"/>
+  <rect x="0" y="0" width="900" height="3" fill="url(#accentArch)"/>
+
+  <text x="450" y="36" fill="#e2e8f0" font-size="15" font-weight="700" text-anchor="middle" letter-spacing="1">TESTFORGE CLOUD — ARCHITECTURE</text>
+
+  <!-- Client box -->
+  <rect x="40" y="70" width="130" height="80" rx="8" fill="#141c2e" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="105" y="105" fill="#60a5fa" font-size="12" text-anchor="middle" font-weight="700">CLIENT</text>
+  <text x="105" y="123" fill="#64748b" font-size="10" text-anchor="middle">POST /api/generate</text>
+  <text x="105" y="138" fill="#64748b" font-size="10" text-anchor="middle">{ code, framework }</text>
+
+  <!-- Arrow 1 -->
+  <line x1="170" y1="110" x2="228" y2="110" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="199" y="104" fill="#64748b" font-size="9" text-anchor="middle">HTTP POST</text>
+
+  <!-- Azure Function box -->
+  <rect x="230" y="70" width="150" height="80" rx="8" fill="#141c2e" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="305" y="100" fill="#a78bfa" font-size="12" text-anchor="middle" font-weight="700">AZURE FUNCTION</text>
+  <text x="305" y="117" fill="#64748b" font-size="10" text-anchor="middle">HTTP Trigger</text>
+  <text x="305" y="132" fill="#64748b" font-size="10" text-anchor="middle">generate/__init__.py</text>
+  <text x="305" y="147" fill="#64748b" font-size="10" text-anchor="middle">validate + route</text>
+
+  <!-- Arrow 2 -->
+  <line x1="380" y1="110" x2="438" y2="110" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="409" y="104" fill="#64748b" font-size="9" text-anchor="middle">prompt</text>
+
+  <!-- Prompt box -->
+  <rect x="440" y="70" width="140" height="80" rx="8" fill="#141c2e" stroke="#0891b2" stroke-width="1.5"/>
+  <text x="510" y="100" fill="#22d3ee" font-size="12" text-anchor="middle" font-weight="700">PROMPT ENG</text>
+  <text x="510" y="117" fill="#64748b" font-size="10" text-anchor="middle">core/prompt.py</text>
+  <text x="510" y="132" fill="#64748b" font-size="10" text-anchor="middle">system + user msgs</text>
+  <text x="510" y="147" fill="#64748b" font-size="10" text-anchor="middle">build_prompt()</text>
+
+  <!-- Arrow 3 -->
+  <line x1="580" y1="110" x2="638" y2="110" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="609" y="104" fill="#64748b" font-size="9" text-anchor="middle">API call</text>
+
+  <!-- GPT-4o box -->
+  <rect x="640" y="70" width="130" height="80" rx="8" fill="#141c2e" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="705" y="100" fill="#22c55e" font-size="12" text-anchor="middle" font-weight="700">GPT-4o</text>
+  <text x="705" y="117" fill="#64748b" font-size="10" text-anchor="middle">core/generator.py</text>
+  <text x="705" y="132" fill="#64748b" font-size="10" text-anchor="middle">OpenAI API</text>
+  <text x="705" y="147" fill="#64748b" font-size="10" text-anchor="middle">or MOCK_MODE</text>
+
+  <!-- Arrow 4: GPT to Parser (goes down then left) -->
+  <path d="M 705 150 L 705 220 L 510 220 L 510 190" fill="none" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+  <text x="620" y="214" fill="#64748b" font-size="9" text-anchor="middle">raw tests</text>
+
+  <!-- Parser box -->
+  <rect x="440" y="190" width="140" height="80" rx="8" fill="#141c2e" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="510" y="220" fill="#fbbf24" font-size="12" text-anchor="middle" font-weight="700">VALIDATOR</text>
+  <text x="510" y="237" fill="#64748b" font-size="10" text-anchor="middle">core/parser.py</text>
+  <text x="510" y="252" fill="#64748b" font-size="10" text-anchor="middle">ast.parse()</text>
+  <text x="510" y="267" fill="#64748b" font-size="10" text-anchor="middle">syntax check</text>
+
+  <!-- Arrow 5: Parser back to Function -->
+  <path d="M 440 230 L 305 230 L 305 150" fill="none" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+  <text x="360" y="244" fill="#64748b" font-size="9" text-anchor="middle">validated tests</text>
+
+  <!-- Arrow 6: Function back to Client -->
+  <path d="M 230 150 L 230 300 L 105 300 L 105 150" fill="none" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="155" y="314" fill="#22c55e" font-size="9" text-anchor="middle">JSON response</text>
+
+  <!-- CI/CD bottom band -->
+  <rect x="40" y="330" width="820" height="70" rx="8" fill="#0d1117" stroke="#1e2d4a" stroke-width="1"/>
+  <text x="60" y="358" fill="#64748b" font-size="11" font-weight="700">CI/CD PIPELINE</text>
+  <text x="60" y="376" fill="#374151" font-size="10">Push to main</text>
+  <line x1="145" y1="367" x2="185" y2="367" stroke="#3b82f6" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="210" y="376" fill="#374151" font-size="10">GitHub Actions</text>
+  <line x1="295" y1="367" x2="335" y2="367" stroke="#3b82f6" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="360" y="376" fill="#374151" font-size="10">pytest + coverage</text>
+  <line x1="462" y1="367" x2="502" y2="367" stroke="#3b82f6" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="527" y="376" fill="#374151" font-size="10">func publish</text>
+  <line x1="600" y1="367" x2="640" y2="367" stroke="#3b82f6" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="665" y="376" fill="#22c55e" font-size="10">Azure deploy</text>
+
+  <!-- Legend -->
+  <line x1="750" y1="358" x2="770" y2="358" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="776" y="362" fill="#64748b" font-size="9">request</text>
+  <line x1="750" y1="374" x2="770" y2="374" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="776" y="378" fill="#64748b" font-size="9">response</text>
+
+  <!-- MOCK badge -->
+  <rect x="640" y="185" width="130" height="30" rx="6" fill="#0d2d1a" stroke="#16a34a" stroke-width="1"/>
+  <circle cx="658" cy="200" r="4" fill="#22c55e"/>
+  <text x="668" y="204" fill="#22c55e" font-size="10">MOCK_MODE=true</text>
+  <text x="670" y="219" fill="#374151" font-size="9">no API key needed</text>
+</svg>
